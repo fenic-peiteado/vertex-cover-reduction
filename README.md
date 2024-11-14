@@ -6,3 +6,4 @@ Parcipantes:
 - Pablo Santana Gonzales
 - Hugo Martín
 - Tania Evora Vargas Martinez
+- Jose Fenic Peiteado Padilla
