@@ -2,8 +2,8 @@
 
 ## Vertex Cover Reduction
 
-Parcipantes:
-- Pablo Santana Gónzales
+Participantes:
+- Pablo Santana González
 - Hugo Hernádez Martín
 - Tania Evora Vargas Martinez
 - Jose Fenic Peiteado Padilla
