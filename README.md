@@ -1,2 +1,3 @@
-# vertex-cover-reduction
-Complejidad Computacional
+# Complejidad Computacional
+
+## Vertex Cover Reduction
