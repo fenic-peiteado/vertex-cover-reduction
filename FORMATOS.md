@@ -37,7 +37,7 @@
     ...
   },
   "communication-edges": {
-    ...
+    "aristas": ... // En este caso solo nos interesan las aristas, los vértices ya han aparecido previamente
   }
 }
 ```
