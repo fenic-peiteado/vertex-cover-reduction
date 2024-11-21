@@ -1,5 +1,5 @@
 # Formato de entrada. Problema 3-SAT.
-```json
+```
 {
   "variables": [
     "a",
@@ -27,9 +27,17 @@
 }
 ```
 # Formato de salida. Problema VC.
-```json
+```
 {
-  "vertices": ["a", "a2", ...],
-  "aristas": [["a", "b"], ["a", "a2"], ...]
+  "truth-settings": {
+    "vertices": ["a", "a2", ...],
+    "aristas": [["a", "b"], ["a", "a2"], ...]
+  },
+  "satisfaction-testing": { 
+    ...
+  },
+  "communication-edges": {
+    ...
+  }
 }
 ```
