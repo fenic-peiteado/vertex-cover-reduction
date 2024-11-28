@@ -1,9 +1,10 @@
 import sys
 import json
+import graph_visualization as gv
 
-####################
-# Lectura del json #
-####################
+###########################
+# Entrada/Salida del json #
+###########################
 def readInput(file):
   with open(file, 'r') as f:
     data = json.load(f)
@@ -13,34 +14,67 @@ def readInput(file):
 
   return [variables, clausulas]
 
+def writeOutput(file, vc_structure):
+  print(vc_structure)
+  output = json.dumps(vc_structure, indent=2,separators=(',', ':',))
+  print(output)
+  with open(file, 'w') as f:
+    f.write(output)
 
-##################
+
+################## peiteado padilla + chatgpt = chateado ptdilla
 # Transformación #
 ##################
-def calcula_truth_settings(variables):
-  vertices = []
-  aristas = []
+def get_truth_settings(variables):
+  vertex = []
+  edges = []
   for var in variables:
     var1 = var
     var2 = "n_" + var
-    vertices.insert(len(vertices), var1)
-    vertices.insert(len(vertices), var2)
-    aristas.insert(len(aristas), [var1, var2])
-  return [vertices, aristas]
+    vertex.append(var1)
+    vertex.append(var2)
+    edges.append([var1, var2])
+  return [vertex, edges]
 
-def calcula_satisfaction_testing():
-  vertices = []
-  aristas = []
-  for c in clausulas:
-    
-  return [vertices, aristas]
+def get_satisfaction_testing(clausulas):
+  vertex = []
+  edges = []
+  for clausula in range(1, len(clausulas) + 1):
+    for termino in range(1, 4):
+      vertex.append(f"c{clausula}_{termino}")
+
+    edges.append([f"c{clausula}_1", f"c{clausula}_2"])
+    edges.append([f"c{clausula}_1", f"c{clausula}_3"])
+    edges.append([f"c{clausula}_2", f"c{clausula}_3"])
+  return [vertex, edges]
+
+def get_communication_edges(clausulas):
+  edges = []
+  for clausula in range(1, len(clausulas) + 1):
+    for termino in range(1, 4):
+      nombre_origen = vertex_name(clausulas, clausula, termino)
+      nombre_destino = f"c{clausula}_{termino}"
+      edges.append([nombre_origen, nombre_destino])
+  return edges
+
+def vertex_name(clausulas, clausula, termino):
+  nombre_origen = clausulas[clausula - 1][termino - 1]["variable"]
+  if (clausulas[clausula - 1][termino - 1]["esNegado"]):
+    nombre_origen = f"n_{nombre_origen}"
+  return nombre_origen
 
 def transform(variables, clausulas):
   # obtener truth settings
-  [TS_vertex, TS_edges] = calcula_truth_settings(variables)
+  [TS_vertex, TS_edges] = get_truth_settings(variables)
   # obtener satisfaction testing 
-  [ST_vertex, ST_edges] = calcula_satisfaction_testing()
+  [ST_vertex, ST_edges] = get_satisfaction_testing(clausulas)
   # obtener communication edges 
+  CE_edges = get_communication_edges(clausulas)
+  return {
+    "truth-settings": { "vertices": TS_vertex, "aristas": TS_edges },
+    "satisfaction-testing": { "vertices": ST_vertex, "aristas": ST_edges },
+    "communication-edges": { "aristas": CE_edges }
+  }
 
 ###################################################
 if len(sys.argv) != 3:
@@ -51,3 +85,5 @@ file_to_write = sys.argv[2]
 
 [variables, clausulas] = readInput(file_to_read)
 output = transform(variables, clausulas)
+writeOutput(file_to_write, output)
+gv.PrintGraph(output)
