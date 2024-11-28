@@ -5,5 +5,5 @@
 Participantes:
 - Pablo Santana González
 - Hugo Hernádez Martín
-- Tania Evora Vargas Martinez
+- Tania Évora Vargas Martínez
 - Jose Fenic Peiteado Padilla
