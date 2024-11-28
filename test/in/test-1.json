@@ -1,0 +1,38 @@
+{
+    "variables": [
+    "a",
+    "b",
+    "c",
+    "d"
+  ],
+  "clausulas": [
+    [ 
+      {
+        "esNegado": false,
+        "variable": "a"
+      },
+      {
+        "esNegado": true,
+        "variable": "c"
+      },
+      {
+        "esNegado": true,
+        "variable": "d"
+      }
+    ],
+    [ 
+      {
+        "esNegado": true,
+        "variable": "a"
+      },
+      {
+        "esNegado": false,
+        "variable": "b"
+      },
+      {
+        "esNegado": true,
+        "variable": "d"
+      }
+    ]
+  ]
+}
