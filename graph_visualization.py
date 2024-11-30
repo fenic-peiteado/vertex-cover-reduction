@@ -8,13 +8,17 @@ def PrintGraph(transform_output):
     communication_edges = transform_output["communication-edges"]
     vertex_output = []
     edge_output = []
+    color_map = []
 
-    
+    truth_settings_color = "red"
+    satisfaction_testing_color = "blue"
     for vertices in truth_settings["vertices"]:
         vertex_output.append(vertices)
+        color_map.append(truth_settings_color)
+
     for vertices in satisfaction_testing["vertices"]:
         vertex_output.append(vertices)
-    
+        color_map.append(satisfaction_testing_color)
     for edge in truth_settings["aristas"]:
         edge_output.append((edge[0], edge[1]))
     for edge in satisfaction_testing["aristas"]:
@@ -24,6 +28,6 @@ def PrintGraph(transform_output):
     G.add_nodes_from(vertex_output)        
     G.add_edges_from(edge_output)
 
-    nx.draw(G, with_labels = True, font_weight = 'bold')  # networkx draw()
-    plt.draw()  # pyplot draw()
+    nx.draw(G, node_color = color_map, with_labels = True, font_weight = 'bold')  # networkx draw()
+    plt.show()  # pyplot draw()
     
