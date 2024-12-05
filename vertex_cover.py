@@ -78,7 +78,7 @@ def transform(variables, clausulas):
 
 ###################################################
 if len(sys.argv) != 3:
-  sys.exit("Uso: python " + sys.argv[0] + "3SAT.json VC.json")
+  sys.exit("Uso: python " + sys.argv[0] + " 3SAT.json VC.json")
 
 file_to_read = sys.argv[1]
 file_to_write = sys.argv[2]
